@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,58 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header style={styles.header}>
+          <div style={styles.container}>
+            <h1 style={styles.logo}>CIS</h1>
+            <nav style={styles.nav}>
+              <Link href="/" style={styles.navLink}>Home</Link>
+              <Link href="/student" style={styles.navLink}>Student</Link>
+              <Link href="/pokemon" style={styles.navLink}>Pokemon</Link>
+              <Link href="/aboutme" style={styles.navLink}>About Me</Link>
+            </nav>
+          </div>
+        </header>
+        <main style={styles.mainContent}>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
+
+const styles = {
+  header: {
+    backgroundColor: '#333',
+    padding: '10px 0',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  },
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 20px',
+  },
+  logo: {
+    color: '#fff',
+    fontSize: '1.5rem',
+    margin: 0,
+  },
+  nav: {
+    display: 'flex',
+    gap: '20px',
+  },
+  navLink: {
+    color: '#fff',
+    textDecoration: 'none',
+    fontSize: '1rem',
+    transition: 'color 0.2s',
+  },
+  mainContent: {
+    padding: '20px',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  },
+};
